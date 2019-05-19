@@ -11,6 +11,7 @@ void escribir(string); //escribe el string indicado
 void clickear(int,int); //hace click izquierdo en un determinado punto x,y.
 void bajar(int,int,int,int); //arrastra algo haciendo click de un punto a otro.
 void mostrar(); //muestra constantemente la ubicación del mouse.
+void abrir(string); //abre una pagina web indicada en el string.
 
 int main()
 {
@@ -57,4 +58,9 @@ void mostrar(){
         Sleep(50);
         system("cls");
     }
+}
+
+void abrir(string s){
+    ShellExecute(NULL, "open", s.c_str(), NULL, NULL, SW_SHOWNORMAL);
+    Sleep(5000);
 }
