@@ -1,0 +1,47 @@
+
+// Presionar teclas y click
+
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+void presionar(char); //presiona la tecla indicada
+void escribir(string); //escribe el string indicado
+void clickear(int,int,int); //hace click izquierdo en un determinado punto x,y con un tiempo de espera
+void bajar(int,int,int,int,int); //arrastra algo haciendo click de un punto a otro, con un tiempo de espera
+
+int main()
+{
+
+    return 0;
+}
+
+void presionar(char x){
+    keybd_event(VkKeyScan(x),0,0, 0);
+    keybd_event(VkKeyScan(x),0,KEYEVENTF_KEYUP,0);
+    Sleep(50);
+}
+
+void escribir(string s){
+    for(int i=0; i<s.length(); i++){
+        presionar(s[i]);
+    }
+}
+
+void clickear(int x, int y, int t){
+    SetCursorPos(x,y);
+    mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+    Sleep(t);
+}
+
+void bajar(int x1, int y1, int x2, int y2, int t){
+    SetCursorPos(x1,y1);
+    Sleep(500);
+    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+    Sleep(t);
+    SetCursorPos(x2,y2);
+    Sleep(t);
+    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+    Sleep(t);
+}
